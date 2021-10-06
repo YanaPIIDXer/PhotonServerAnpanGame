@@ -80,6 +80,16 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "com.yanapiidxer.photonserverclientframework": {
+      "version": "https://github.com/YanaPIIDXer/PhotonServerClientFramework.git?path=Assets/Plugins/PhotonServerClientFramework",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.cysharp.unitask": "2.2.5",
+        "com.neuecc.unirx": "7.1.0"
+      },
+      "hash": "a0c2273ad890deeebd5e382aa872ae886cec4df7"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
