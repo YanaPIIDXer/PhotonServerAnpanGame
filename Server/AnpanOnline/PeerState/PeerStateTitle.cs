@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Photon.SocketServer;
 using AnpanGameCommon;
+using FirebaseAdmin.Auth;
 
 namespace AnpanOnline.PeerState
 {
@@ -27,10 +28,24 @@ namespace AnpanOnline.PeerState
 		/// <returns>レスポンス</returns>
 		private OperationResponse LogInHandler(OperationRequest request)
 		{
+			bool bVerify = false;
+			try
+			{
+				FirebaseAuth auth = FirebaseAuth.DefaultInstance;
+				var token = auth.VerifyIdTokenAsync((string)request.Parameters[EParamCode.AuthToken]).Result;
+				bVerify = (token != null);
+			}
+			catch (Exception e)
+			{
+				Logger.Log.ErrorFormat("Verify Error:{0}", e.Message);
+				Logger.Log.Error(e.StackTrace);
+				bVerify = false;
+			}
+
 			return new OperationResponse()
 			{
 				OperationCode = (byte)EOpCode.LogIn,
-				Parameters = new Dictionary<byte, object>() { { EParamCode.VerifyResult, true } }		// TODO:認証トークン検証処理の実装
+				Parameters = new Dictionary<byte, object>() { { EParamCode.VerifyResult, bVerify } }
 			};
 		}
 	}
