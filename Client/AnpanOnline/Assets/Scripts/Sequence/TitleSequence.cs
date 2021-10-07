@@ -5,6 +5,10 @@ using UI.Title;
 using UniRx;
 using System;
 using Firebase.Auth;
+using Cysharp.Threading.Tasks;
+using Network;
+using Game;
+using AnpanGameCommon;
 
 namespace Sequence
 {
@@ -41,7 +45,11 @@ namespace Sequence
                 FirebaseAuth auth = FirebaseAuth.DefaultInstance;
                 var user = await auth.CreateUserWithEmailAndPasswordAsync(info.EMailAddress, info.Password);
                 var token = await user.TokenAsync(true);
-                Debug.Log("Register User Token:" + token);
+                var result = await ConnectToServer(token);
+                if (!result)
+                {
+                    titleScreen.OnProcessError();
+                }
             }
             catch (Exception e)
             {
@@ -61,13 +69,45 @@ namespace Sequence
                 FirebaseAuth auth = FirebaseAuth.DefaultInstance;
                 var user = await auth.SignInWithEmailAndPasswordAsync(info.EMailAddress, info.Password);
                 var token = await user.TokenAsync(true);
-                Debug.Log("LogIn User Token:" + token);
+                var result = await ConnectToServer(token);
+                if (!result)
+                {
+                    titleScreen.OnProcessError();
+                }
             }
             catch (Exception e)
             {
                 Debug.LogError(e.Message);
                 titleScreen.OnProcessError();
             }
+        }
+
+        /// <summary>
+        /// サーバに接続
+        /// </summary>
+        /// <param name="Token">トークン</param>
+        private async UniTask<bool> ConnectToServer(string token)
+        {
+            try
+            {
+                var cancelToken = this.GetCancellationTokenOnDestroy();
+                await ServerConnection.Instance.Connect(GameConfigure.ServerHost, "AnpanOnline", ExitGames.Client.Photon.ConnectionProtocol.Tcp, cancelToken);
+                Dictionary<byte, object> loginParams = new Dictionary<byte, object>() { { EParamCode.AuthToken, token } };
+                var response = await ServerConnection.Instance.SendOperationRequest((byte)EOpCode.LogIn, loginParams, (byte)EOpCode.LogIn, cancelToken);
+                if (!(bool)response.Parameters[EParamCode.VerifyResult])
+                {
+                    Debug.LogError("Verify Error...");
+                    return false;
+                }
+                Debug.Log("LogIn Success!!");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+                ServerConnection.Instance.Disconnect();
+                return false;
+            }
+            return true;
         }
     }
 }
