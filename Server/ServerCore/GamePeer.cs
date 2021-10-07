@@ -4,7 +4,7 @@ using System.Text;
 using Photon.SocketServer;
 using PhotonHostRuntimeInterfaces;
 
-namespace ServerCore
+namespace AnpanOnline
 {
 	public class GamePeer : ClientPeer
 	{

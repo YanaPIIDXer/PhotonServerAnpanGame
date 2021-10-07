@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Photon.SocketServer;
 
-namespace ServerCore
+namespace AnpanOnline
 {
 	/// <summary>
 	/// アプリケーションクラス

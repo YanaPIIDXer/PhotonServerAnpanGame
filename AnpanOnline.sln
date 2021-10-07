@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerCore", "Server\ServerCore\ServerCore.csproj", "{A3FA3874-66CF-4C9E-9A7F-AA0AE669910A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnpanOnline", "Server\ServerCore\AnpanOnline.csproj", "{A3FA3874-66CF-4C9E-9A7F-AA0AE669910A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerInterface", "Server\ServerInterface\ServerInterface.csproj", "{96EC13E4-ABF6-416B-93C8-66D236BF4C0C}"
 EndProject
