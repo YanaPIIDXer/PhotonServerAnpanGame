@@ -36,9 +36,9 @@ namespace Sequence
         /// <param name="info">認証情報</param>
         private async void Register(TitleScreen.LoginInfo info)
         {
-            FirebaseAuth auth = FirebaseAuth.DefaultInstance;
             try
             {
+                FirebaseAuth auth = FirebaseAuth.DefaultInstance;
                 var user = await auth.CreateUserWithEmailAndPasswordAsync(info.EMailAddress, info.Password);
                 var token = await user.TokenAsync(true);
                 Debug.Log("Register User Token:" + token);
@@ -56,9 +56,9 @@ namespace Sequence
         /// <param name="info">認証情報</param>
         private async void LogIn(TitleScreen.LoginInfo info)
         {
-            FirebaseAuth auth = FirebaseAuth.DefaultInstance;
             try
             {
+                FirebaseAuth auth = FirebaseAuth.DefaultInstance;
                 var user = await auth.SignInWithEmailAndPasswordAsync(info.EMailAddress, info.Password);
                 var token = await user.TokenAsync(true);
                 Debug.Log("LogIn User Token:" + token);
