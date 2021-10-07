@@ -73,14 +73,14 @@
       <Name>ServerInterface</Name>
     </ProjectReference>
   </ItemGroup>
-  
   <ItemGroup>
     <PackageReference Include="FirebaseAdmin" Version="2.2.0" />
   </ItemGroup>
-
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy * D:\PhotonServer\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\AnpanOnline\bin\
+cd ../../
+copy *-firebase-*.json D:\PhotonServer\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\AnpanOnline\bin\
 </PostBuildEvent>
   </PropertyGroup>
 </Project>
