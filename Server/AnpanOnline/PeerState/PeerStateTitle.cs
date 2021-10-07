@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Photon.SocketServer;
+using AnpanGameCommon;
 
 namespace AnpanOnline.PeerState
 {
@@ -15,6 +17,21 @@ namespace AnpanOnline.PeerState
 		public PeerStateTitle(GamePeer parent)
 			: base(parent)
 		{
+			AddOperationHandler(EOpCode.LogIn, LogInHandler);
+		}
+
+		/// <summary>
+		/// ログインオペレーションハンドラ
+		/// </summary>
+		/// <param name="request">リクエスト</param>
+		/// <returns>レスポンス</returns>
+		private OperationResponse LogInHandler(OperationRequest request)
+		{
+			return new OperationResponse()
+			{
+				OperationCode = (byte)EOpCode.LogIn,
+				Parameters = new Dictionary<byte, object>() { { 0, "OK" } }
+			};
 		}
 	}
 }
