@@ -26,4 +26,8 @@
     </Reference>
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy bin\Debug\netstandard2.1\* D:\PhotonServer\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\AnpanOnline\bin&#xD;&#xA;" />
+  </Target>
+
 </Project>
