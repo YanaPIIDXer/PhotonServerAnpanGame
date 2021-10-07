@@ -63,6 +63,8 @@
     <Compile Include="Application.cs" />
     <Compile Include="GamePeer.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="PeerState\PeerStateBase.cs" />
+    <Compile Include="PeerState\PeerStateTitle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

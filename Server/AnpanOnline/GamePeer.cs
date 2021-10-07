@@ -4,6 +4,7 @@ using System.Text;
 using Photon.SocketServer;
 using PhotonHostRuntimeInterfaces;
 using AnpanGameCommon;
+using AnpanOnline.PeerState;
 
 namespace AnpanOnline
 {
@@ -13,12 +14,18 @@ namespace AnpanOnline
 	public class GamePeer : ClientPeer
 	{
 		/// <summary>
+		/// 現在のState
+		/// </summary>
+		private PeerStateBase currentState = null;
+
+		/// <summary>
 		/// コンストラクタ
 		/// </summary>
 		/// <param name="initRequest">初期化情報</param>
 		public GamePeer(InitRequest initRequest)
 			: base(initRequest)
 		{
+			currentState = new PeerStateTitle(this);
 		}
 
 		/// <summary>
@@ -37,20 +44,6 @@ namespace AnpanOnline
 		/// <param name="sendParameters">送信パラメータ</param>
 		protected override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters)
 		{
-			switch((EOpCode)operationRequest.OperationCode)
-			{
-				case EOpCode.LogIn:
-					{
-						OperationResponse response = new OperationResponse
-						{
-							ReturnCode = 0,
-							OperationCode = (byte)EOpCode.LogIn,
-							Parameters = new Dictionary<byte, object> { { 0, "OK!" } }
-						};
-						SendOperationResponse(response, sendParameters);
-					}
-					break;
-			}
 		}
 	}
 }
