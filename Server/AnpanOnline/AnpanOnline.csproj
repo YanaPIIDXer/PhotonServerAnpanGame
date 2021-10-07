@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ServerInterface\ServerInterface.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="ExitGames.Logging.Log4Net">
       <HintPath>..\Binaries\ExitGames.Logging.Log4Net.dll</HintPath>
     </Reference>
@@ -24,6 +20,13 @@
     <Reference Include="PhotonHostRuntimeInterfaces">
       <HintPath>..\Binaries\PhotonHostRuntimeInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\Binaries\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="../../Client/AnpanOnline/Assets/Scripts/Share/**/*.cs" LinkBase="LinkFromUnity" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
