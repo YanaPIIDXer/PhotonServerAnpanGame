@@ -30,7 +30,7 @@ namespace AnpanOnline
 		protected override void Setup()
 		{
 			SetupLog();
-			LogManager.GetLogger("").Debug("Anpan Online Server Setup OK.");
+			LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().Name).Debug("Anpan Online Server Setup OK.");
 		}
 
 		/// <summary>
