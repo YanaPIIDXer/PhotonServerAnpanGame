@@ -34,8 +34,8 @@ namespace AnpanOnline.PeerState
 
 		/// <summary>
 		/// オペレーションコードに対応したハンドラの追加
-		/// ※ハンドラはオペレーションに対するレスポンスを返す
-		/// 　レスポンスが無い場合はnullを返す事
+		/// ※ハンドラはリクエストに対するレスポンスを返す
+		/// 　移動パケット等、返すレスポンスが無い場合はnullを返す事
 		/// </summary>
 		/// <param name="opCode">オペレーションコード</param>
 		/// <param name="handler">ハンドラ</param>
