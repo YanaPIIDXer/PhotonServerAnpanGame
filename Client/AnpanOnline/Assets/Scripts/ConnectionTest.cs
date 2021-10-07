@@ -7,6 +7,7 @@ using UniRx;
 using Cysharp.Threading.Tasks;
 using PhotonServerClient;
 using ExitGames.Client.Photon;
+using AnpanGameCommon;
 
 /// <summary>
 /// 実験用コード
@@ -28,6 +29,10 @@ public class ConnectionTest : MonoBehaviour
                   {
                       await client.Connect("127.0.0.1:4530", "AnpanOnline", ConnectionProtocol.Tcp, token);
                       Debug.Log("Connection Success!");
+                      await UniTask.Delay(1000);
+                      Debug.Log("Send LogIn.");
+                      var response = await client.SendOperationRequest((byte)EOpCode.LogIn, new Dictionary<byte, object>(), (byte)EOpCode.LogIn, token);
+                      Debug.Log("LogIn Success! Message:" + response.Parameters[0]);
                       await UniTask.Delay(1000);
                   }
                   catch (Exception e)

@@ -7,7 +7,8 @@ namespace AnpanGameCommon
     /// <summary>
     /// オペレーションコード
     /// </summary>
-    public enum EOpCode : byte {
-        LogIn,
+    public enum EOpCode : byte
+    {
+        LogIn = 1,
     }
 }
