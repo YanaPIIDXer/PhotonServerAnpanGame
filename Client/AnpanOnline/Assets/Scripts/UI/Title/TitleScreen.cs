@@ -95,6 +95,25 @@ namespace UI.Title
                                  registerButton.interactable = b;
                                  logInButton.interactable = b;
                              }).AddTo(gameObject);
+
+            // どちらかが押されたらOnProcessError()が呼び出されるまで押せなくする
+            // ※多重処理防止
+            registerButton.OnClickAsObservable()
+                          .Merge(logInButton.OnClickAsObservable())
+                          .Subscribe(_ =>
+                          {
+                              registerButton.interactable = false;
+                              logInButton.interactable = false;
+                          }).AddTo(gameObject);
+        }
+
+        /// <summary>
+        /// 新規登録 or ログインフローが失敗した時に呼び出す
+        /// </summary>
+        public void OnProcessError()
+        {
+            registerButton.interactable = true;
+            logInButton.interactable = true;
         }
     }
 }
