@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Photon.SocketServer;
 using PhotonHostRuntimeInterfaces;
+using AnpanGameCommon;
 
 namespace AnpanOnline
 {
@@ -36,6 +37,20 @@ namespace AnpanOnline
 		/// <param name="sendParameters">送信パラメータ</param>
 		protected override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters)
 		{
+			switch((EOpCode)operationRequest.OperationCode)
+			{
+				case EOpCode.LogIn:
+
+					{
+						OperationResponse response = new OperationResponse
+						{
+							ReturnCode = 0,
+							Parameters = new Dictionary<byte, object> { { 0, "OK!" } }
+						};
+						SendOperationResponse(response, sendParameters);
+					}
+					break;
+			}
 		}
 	}
 }
