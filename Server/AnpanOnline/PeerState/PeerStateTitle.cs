@@ -30,7 +30,7 @@ namespace AnpanOnline.PeerState
 			return new OperationResponse()
 			{
 				OperationCode = (byte)EOpCode.LogIn,
-				Parameters = new Dictionary<byte, object>() { { 0, "OK" } }
+				Parameters = new Dictionary<byte, object>() { { EParamCode.VerifyResult, true } }		// TODO:認証トークン検証処理の実装
 			};
 		}
 	}

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AA33BC5E-1F56-4CE6-B950-DDD705FF649F}</ProjectGuid>
+    <ProjectGuid>{C36D8463-2F46-4645-A995-B457E2FCC8F6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AnpanOnline</RootNamespace>
-    <AssemblyName>AnpanOnline</AssemblyName>
+    <RootNamespace>ServerInterface</RootNamespace>
+    <AssemblyName>ServerInterface</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,22 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ExitGames.Logging.Log4Net">
-      <HintPath>..\Binaries\ExitGames.Logging.Log4Net.dll</HintPath>
-    </Reference>
-    <Reference Include="ExitGamesLibs">
-      <HintPath>..\Binaries\ExitGamesLibs.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\Binaries\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="Photon.SocketServer">
-      <HintPath>..\Binaries\Photon.SocketServer.dll</HintPath>
-    </Reference>
-    <Reference Include="PhotonHostRuntimeInterfaces">
-      <HintPath>..\Binaries\PhotonHostRuntimeInterfaces.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,22 +44,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application.cs" />
-    <Compile Include="GamePeer.cs" />
-    <Compile Include="Logger.cs" />
-    <Compile Include="PeerState\PeerStateBase.cs" />
-    <Compile Include="PeerState\PeerStateTitle.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ServerInterface\ServerInterface.csproj">
-      <Project>{c36d8463-2f46-4645-a995-b457e2fcc8f6}</Project>
-      <Name>ServerInterface</Name>
-    </ProjectReference>
+    <Compile Include="../../Client/AnpanOnline/Assets/Scripts/Share/**/*.cs" LinkBase="LinkFromUnity" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy * D:\PhotonServer\Photon-OnPremise-Server-SDK_v4-0-29-11263\deploy\AnpanOnline\bin\
-</PostBuildEvent>
-  </PropertyGroup>
 </Project>
