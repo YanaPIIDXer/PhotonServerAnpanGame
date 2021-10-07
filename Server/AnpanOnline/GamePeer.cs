@@ -44,6 +44,7 @@ namespace AnpanOnline
 		/// <param name="sendParameters">送信パラメータ</param>
 		protected override void OnOperationRequest(OperationRequest operationRequest, SendParameters sendParameters)
 		{
+			currentState.OnOperation(operationRequest);
 		}
 	}
 }
