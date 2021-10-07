@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Photon.SocketServer;
 using AnpanGameCommon;
+using FirebaseAdmin;
 using FirebaseAdmin.Auth;
 
 namespace AnpanOnline.PeerState
@@ -31,7 +32,12 @@ namespace AnpanOnline.PeerState
 			bool bVerify = false;
 			try
 			{
-				FirebaseAuth auth = FirebaseAuth.DefaultInstance;
+				// TODO:Singletonにした方がいいんじゃないか・・・？
+				var app = FirebaseApp.Create(new AppOptions()
+				{
+					Credential = Google.Apis.Auth.OAuth2.GoogleCredential.FromFile("bin/anpanonline-724bb-firebase-adminsdk-mwe42-e0ff379114.json")
+				});
+				FirebaseAuth auth = FirebaseAuth.GetAuth(app);
 				var token = auth.VerifyIdTokenAsync((string)request.Parameters[EParamCode.AuthToken]).Result;
 				bVerify = (token != null);
 			}
