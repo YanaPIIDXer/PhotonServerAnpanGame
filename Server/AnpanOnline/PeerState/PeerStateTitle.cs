@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Photon.SocketServer;
 using AnpanGameCommon;
-using FirebaseAdmin;
-using FirebaseAdmin.Auth;
+using AnpanOnline.Auth;
 
 namespace AnpanOnline.PeerState
 {
@@ -29,30 +28,9 @@ namespace AnpanOnline.PeerState
 		/// <returns>レスポンス</returns>
 		private OperationResponse LogInHandler(OperationRequest request)
 		{
-			bool bVerify = false;
-			try
-			{
-				// TODO:Singletonにした方がいいんじゃないか・・・？
-				var app = FirebaseApp.Create(new AppOptions()
-				{
-					Credential = Google.Apis.Auth.OAuth2.GoogleCredential.FromFile("bin/anpanonline-724bb-firebase-adminsdk-mwe42-e0ff379114.json")
-				});
-				FirebaseAuth auth = FirebaseAuth.GetAuth(app);
-				var token = auth.VerifyIdTokenAsync((string)request.Parameters[EParamCode.AuthToken]).Result;
-				bVerify = (token != null);
-			}
-			catch (Exception e)
-			{
-				Logger.Log.ErrorFormat("Verify Error:{0}", e.Message);
-				Logger.Log.Error(e.StackTrace);
-				bVerify = false;
-			}
-
-			return new OperationResponse()
-			{
-				OperationCode = (byte)EOpCode.LogIn,
-				Parameters = new Dictionary<byte, object>() { { EParamCode.VerifyResult, bVerify } }
-			};
+			LogInTokenVerify.Verify((string)request.Parameters[EParamCode.AuthToken], Parent);
+			// 非同期処理で検証を行い、遅延して結果を返す
+			return null;
 		}
 	}
 }
