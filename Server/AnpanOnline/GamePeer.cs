@@ -40,8 +40,6 @@ namespace AnpanOnline
 			switch((EOpCode)operationRequest.OperationCode)
 			{
 				case EOpCode.LogIn:
-				default:
-
 					{
 						OperationResponse response = new OperationResponse
 						{
