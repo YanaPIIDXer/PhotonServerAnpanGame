@@ -26,11 +26,11 @@ namespace Sequence
         void Awake()
         {
             titleScreen.OnRegister
-                       .Subscribe(info => Register(info))
+                       .Subscribe(info => Register(info).Forget())
                        .AddTo(gameObject);
 
             titleScreen.OnLogIn
-                       .Subscribe(info => LogIn(info))
+                       .Subscribe(info => LogIn(info).Forget())
                        .AddTo(gameObject);
         }
 
@@ -38,7 +38,7 @@ namespace Sequence
         /// 新規登録
         /// </summary>
         /// <param name="info">認証情報</param>
-        private async void Register(TitleScreen.LoginInfo info)
+        private async UniTaskVoid Register(TitleScreen.LoginInfo info)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace Sequence
         /// ログイン
         /// </summary>
         /// <param name="info">認証情報</param>
-        private async void LogIn(TitleScreen.LoginInfo info)
+        private async UniTaskVoid LogIn(TitleScreen.LoginInfo info)
         {
             try
             {
