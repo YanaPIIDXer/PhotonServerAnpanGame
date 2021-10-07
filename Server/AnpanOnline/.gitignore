@@ -1,3 +1,5 @@
 bin/**/*.dll
 bin/**/*.pdb
 obj/
+anpanonline-*firebase-*.json
+
