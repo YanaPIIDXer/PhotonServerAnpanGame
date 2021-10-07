@@ -44,6 +44,7 @@ namespace AnpanOnline
 						OperationResponse response = new OperationResponse
 						{
 							ReturnCode = 0,
+							OperationCode = (byte)EOpCode.LogIn,
 							Parameters = new Dictionary<byte, object> { { 0, "OK!" } }
 						};
 						SendOperationResponse(response, sendParameters);
